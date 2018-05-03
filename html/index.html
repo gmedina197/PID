@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
+	<title>P a t r e l a</title>
+
+<body>
+	<div name="Image-1">
+		<div>
+			<input type="file" multiple="false" id="picField-1" onchange="upload()" accept="image/*" />
+		</div>
+		<div>
+			<canvas id="canvas-1"></canvas>	
+		</div>
+		<input type="button" value="Make Grayscale" onclick="makeGray()" >
+	</div>
+	<div name="Image-2">
+		<div>
+			<input type="file" multiple="false" id="picField-2" accept="image/*" />
+		</div>
+		<div>
+			<canvas id="canvas-2"></canvas>	
+		</div>
+	</div>
+	<!--Scripts -->
+	<script src="../js/Pixel.class.js"></script>
+	<script src="../js/Picture.class.js"></script>
+	<script src="../js/index.js"></script>
+</body>
+</html>
