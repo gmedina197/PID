@@ -1,4 +1,4 @@
-canvas = document.getElementById('canvas-1');
+//const canvas = document.getElementById('canvas-1');
 
 let pos = {
     x: 0,

@@ -6,6 +6,7 @@ let canvasAI = document.getElementById('canvas-2');
 let refImage, adjImage;
 
 function uploadRef () {
+
 	refImage = new SimpleImage(referenceImgDom);
 	refImage.drawTo(canvasRI);
 }

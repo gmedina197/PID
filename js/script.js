@@ -1,13 +1,14 @@
 "use strict";
 requestAnimationFrame(mainLoop);
-const canvas = document.getElementById("myCanvas");
+const canvas = document.getElementById("canvas-1");
 const ctx = canvas.getContext("2d");
-const storedRects = [];
-const baseImage = loadImage("https://www.w3schools.com/css/img_fjords.jpg");
-var refresh = true;
+
+let storedRect;
+//const baseImage = loadImage("https://www.w3schools.com/css/img_fjords.jpg");
+let refresh = true;
 const rect = (() => {
-    var x1, y1, x2, y2;
-    var show = false;
+    let x1, y1, x2, y2;
+    let show = false;
     function fix() {
         rect.x = Math.min(x1, x2);
         rect.y = Math.min(y1, y2);
@@ -73,16 +74,20 @@ const mouse = {
 
 mouse.start(canvas);
 function draw() {
-    ctx.drawImage(baseImage, 0, 0, ctx.canvas.width, ctx.canvas.width);
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = "yellow";
-    storedRects.forEach(rect => rect.draw(ctx));
-    ctx.strokeStyle = "red";
-    rect.draw(ctx);
+    //ctx.drawImage(baseImage, 0, 0, ctx.canvas.width, ctx.canvas.width);
+    if(refImage !== undefined) {
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "yellow";
+        if(storedRect !== undefined) {
+            storedRect.draw(ctx);
+        }
+        ctx.strokeStyle = "red";
+        rect.draw(ctx);
+    }
 }
 function mainLoop() {
     if (refresh || mouse.down || mouse.up || mouse.button) {
-        refresh = false;
+       // refresh = false;
         if (mouse.down) {
             mouse.down = false;
             rect.restart(mouse);
@@ -91,9 +96,9 @@ function mainLoop() {
         } else if (mouse.up) {
             mouse.up = false;
             rect.update(mouse);
-            storedRects.push(rect.toRect());
+            storedRect = rect.toRect();
         }
         draw();
     }
-    requestAnimationFrame(mainLoop)
+    requestAnimationFrame(mainLoop);
 }
