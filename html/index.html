@@ -9,24 +9,25 @@
 <body>
 	<div name="Image-1">
 		<div>
-			<input type="file" multiple="false" id="picField-1" onchange="upload()" accept="image/*" />
+			<input type="file" multiple="false" id="picField-1" onchange="uploadRef()" accept="image/*" />
 		</div>
 		<div>
 			<canvas id="canvas-1"></canvas>	
 		</div>
-		<input type="button" value="Make Grayscale" onclick="makeGray()" >
 	</div>
 	<div name="Image-2">
 		<div>
-			<input type="file" multiple="false" id="picField-2" accept="image/*" />
+			<input type="file" multiple="false" id="picField-2" onchange="uploadAdj()"accept="image/*" />
 		</div>
 		<div>
 			<canvas id="canvas-2"></canvas>	
 		</div>
 	</div>
+	<input type="button" value="Make Grayscale" onclick="makeGray()" >
 	<!--Scripts -->
 	<script src="../js/Pixel.class.js"></script>
 	<script src="../js/Picture.class.js"></script>
+	<script src="../js/selectedArea.js"></script>
 	<script src="../js/index.js"></script>
 </body>
 </html>
