@@ -1,14 +1,14 @@
-let referenceImgDom = document.getElementById('picField-1');
-let canvasRI = document.getElementById('canvas-1');
-let adjustImgDom = document.getElementById('picField-2');
-let canvasAI = document.getElementById('canvas-2');
+let referenceImgDom = document.getElementById('picField-1'),
+	canvasRI = document.getElementById('canvas-1'),
+	adjustImgDom = document.getElementById('picField-2'),
+	canvasAI = document.getElementById('canvas-2');
 
 let refImage, adjImage;
 
 function uploadRef () {
-
 	refImage = new SimpleImage(referenceImgDom);
 	refImage.drawTo(canvasRI);
+	let Teste = new area('canvas-1');
 }
 
 function uploadAdj () {
