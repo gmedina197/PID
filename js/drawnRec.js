@@ -1,4 +1,4 @@
-class area {
+/*lass area {
     constructor(selectedCanvas) {
         this.canvas = document.getElementById(selectedCanvas),
         this.ctx = this.getCtx(),
@@ -47,10 +47,10 @@ class area {
         this.ctx.strokeStyle = 'yellow';
         this.ctx.strokeRect(this.rect.startX, this.rect.startY, this.rect.w, this.rect.h);
     }
-}
+}*/
 
 
-/*let canvas = document.getElementById('canvas-1'),
+let canvas = document.getElementById('canvas-1'),
     ctx = canvas.getContext('2d'),
     rect = {
         startX: 0,
@@ -60,25 +60,25 @@ class area {
     },
     drag = false;
 
-function init () {
+function init() {
     
     canvas.addEventListener('mousedown', mouseDown, false);
     canvas.addEventListener('mouseup', mouseUp, false);
     canvas.addEventListener('mousemove', mouseMove, false);
 }
 
-function mouseDown (evt) {
+function mouseDown(evt) {
     rect.startX = evt.pageX - this.offsetLeft;
     rect.startY = evt.pageY - this.offsetTop;
     drag = true;
 }
 
-function mouseUp () {
+function mouseUp() {
     drag = false;
-    console.log(rect);
+    makeSelectedMatrix(rect);
 }
 
-function mouseMove (evt) {
+function mouseMove(evt) {
     if (drag) {
         rect.w = (evt.pageX - this.offsetLeft) - rect.startX;
         rect.h = (evt.pageY - this.offsetTop) - rect.startY;
@@ -88,10 +88,20 @@ function mouseMove (evt) {
     }
 }
 
-function draw () {
+function draw() {
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'yellow';
     ctx.strokeRect(rect.startX, rect.startY, rect.w, rect.h);
 }
 
-init();*/
+function makeSelectedMatrix(area) {
+    console.log(area);
+    let matrix;// = H x W
+
+    console.log('Size: ' + refImage.getWidth() + 'x' + refImage.getHeight());
+    console.log(refImage.pixels());
+
+    refImage.pixels().array.forEach(element => {
+        
+    });
+}

@@ -5,18 +5,18 @@ let referenceImgDom = document.getElementById('picField-1'),
 
 let refImage, adjImage;
 
-function uploadRef () {
+function uploadRef() {
 	refImage = new SimpleImage(referenceImgDom);
 	refImage.drawTo(canvasRI);
-	let Teste = new area('canvas-1');
+	init();
 }
 
-function uploadAdj () {
+function uploadAdj() {
 	adjImage = new SimpleImage(adjustImgDom);
 	adjImage.drawTo(canvasAI);
 }
 
-function makeGray () {
+function makeGray() {
 	for (let pixel of refImage.values()) {
 		let avg = ( pixel.getRed() + pixel.getGreen() + pixel.getBlue() ) / 3;
 		pixel.setRed(avg);
