@@ -1,55 +1,3 @@
-/*lass area {
-    constructor(selectedCanvas) {
-        this.canvas = document.getElementById(selectedCanvas),
-        this.ctx = this.getCtx(),
-        this.rect = {
-            startX: 0,
-            startY: 0,
-            w: 0,
-            h:0
-        },
-        this.drag = false;
-    }
-
-    getCtx() {
-        this.ctx = this.canvas.getContext('2d');
-    }
-
-    init() {
-        this.canvas.addEventListener('mousedown', this.mouseDown, false);
-        this.canvas.addEventListener('mouseup', this.mouseUp, false);
-        this.canvas.addEventListener('mousemove', this.mouseMove, false); 
-    }
-
-    mouseDown (evt) {
-        this.rect.startX = evt.pageX - this.offsetLeft;
-        this.rect.startY = evt.pageY - this.offsetTop;
-        this.drag = true;
-    }
-    
-    mouseUp () {
-        this.drag = false;
-        console.log(this.rect);
-    }
-    
-    mouseMove (evt) {
-        if (this.drag) {
-            this.rect.w = (evt.pageX - this.offsetLeft) - this.rect.startX;
-            this.rect.h = (evt.pageY - this.offsetTop) - rect.startY;
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-            refImage.drawTo(canvasRI);        
-            draw();
-        }
-    }
-    
-    draw () {
-        this.ctx.lineWidth = 1;
-        this.ctx.strokeStyle = 'yellow';
-        this.ctx.strokeRect(this.rect.startX, this.rect.startY, this.rect.w, this.rect.h);
-    }
-}*/
-
-
 let canvas = document.getElementById('canvas-1'),
     ctx = canvas.getContext('2d'),
     rect = {
@@ -99,9 +47,4 @@ function makeSelectedMatrix(area) {
     let matrix;// = H x W
 
     console.log('Size: ' + refImage.getWidth() + 'x' + refImage.getHeight());
-    console.log(refImage.pixels());
-
-    refImage.pixels().array.forEach(element => {
-        
-    });
 }
