@@ -9,7 +9,6 @@ let canvas = document.getElementById('canvas-1'),
     drag = false;
 
 function init() {
-    
     canvas.addEventListener('mousedown', mouseDown, false);
     canvas.addEventListener('mouseup', mouseUp, false);
     canvas.addEventListener('mousemove', mouseMove, false);
@@ -28,10 +27,10 @@ function mouseUp() {
 
 function mouseMove(evt) {
     if (drag) {
-        rect.w = (evt.pageX - this.offsetLeft) - rect.startX;
-        rect.h = (evt.pageY - this.offsetTop) - rect.startY;
+        rect.w = evt.pageX - this.offsetLeft - rect.startX;
+        rect.h = evt.pageY - this.offsetTop - rect.startY;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-	    refImage.drawTo(canvasRI);        
+        refImage.drawTo(canvasRI);
         draw();
     }
 }
@@ -44,7 +43,7 @@ function draw() {
 
 function makeSelectedMatrix(area) {
     console.log(area);
-    let matrix;// = H x W
+    let matrix; // = H x W
 
     console.log('Size: ' + refImage.getWidth() + 'x' + refImage.getHeight());
 }
