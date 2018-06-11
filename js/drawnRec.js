@@ -8,18 +8,18 @@ let canvas = document.getElementById('canvas-1'),
     },
     drag = false;
 
+function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+        x: evt.clientX - rect.left,
+        y: evt.clientY - rect.top
+    };
+}
+
 function init() {
     canvas.addEventListener('mousedown', mouseDown, false);
     canvas.addEventListener('mouseup', mouseUp, false);
     canvas.addEventListener('mousemove', mouseMove, false);
-}
-
-function getMousePos(canvas, evt) {
-    var rect = canvas.getBoundingClientRect();
-    return {
-      x: evt.clientX - rect.left,
-      y: evt.clientY - rect.top
-    };
 }
 
 function mouseDown(evt) {
@@ -55,10 +55,8 @@ function makeSelectedMatrix(area) {
     console.log(area);
     console.log(grayScaleMatrix);
     let matrix; // = H x W
-    for(let i = 0; i < area.h; i++) {
-        for(let j = 0; j < area.w; j++) {
-            
-        }
+    for (let i = 0; i < area.h; i++) {
+        for (let j = 0; j < area.w; j++) {}
     }
 
     console.log('Size: ' + refImage.getWidth() + 'x' + refImage.getHeight());

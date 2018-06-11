@@ -34,8 +34,21 @@ body {
     top: 0;
 }
  */
- canvas {
+canvas {
     padding: 0;
     margin: auto;
     display: block;
+}
+
+@font-face {
+    font-family: Futura;
+    src: local('Futura Std');
+}
+
+a {
+    font-family: Futura;
+}
+
+.highlight:hover{
+    color:rgb(18, 175, 31);
 }
