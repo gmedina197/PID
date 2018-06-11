@@ -10,31 +10,40 @@ let refImage,
 function uploadRef() {
     refImage = new SimpleImage(referenceImgDom);
     refImage.drawTo(canvasRI);
-    console.log(
-        'reference image size ' + canvasRI.height + ' x ' + canvasRI.width
-    );
     init();
 }
 
 function uploadAdj() {
     adjImage = new SimpleImage(adjustImgDom);
-    console.log(
-        'adjust image size ' + canvasAI.height + ' x ' + canvasAI.width
-    );
     adjImage.drawTo(canvasAI);
 }
 
 function makeGray() {
+    let grayScaleList = [];
     for (let pixel of refImage.pixels()) {
         let avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
-        grayScaleMatrix.push(avg);
+        grayScaleList.push(avg);
         pixel.setRed(avg);
         pixel.setGreen(avg);
         pixel.setBlue(avg);
     }
     //let pixel = image.getPixel(0, 0);
-    console.log(grayScaleMatrix);
+    grayScaleMatrix = listToMatrix(grayScaleList, refImage.getHeight());
     refImage.drawTo(canvasRI);
+}
+
+function listToMatrix(list, elementsPerSubArray) {
+    var matrix = [], i, k;
+
+    for (i = 0, k = -1; i < list.length; i++) {
+        if (i % elementsPerSubArray === 0) {
+            k++;
+            matrix[k] = [];
+        }
+
+        matrix[k].push(list[i]);
+    }
+    return matrix;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
