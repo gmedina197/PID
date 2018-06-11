@@ -18,33 +18,32 @@
 
 	<link rel="stylesheet" type="text/css " href="../css/spinner.css">
 
-	<title>P a t r e l a</title>
+	<title> P a t r e l a</title>
 </head>
 
 <body>
 	<div class="fixed-action-btn">
-		<a class="btn-floating btn-large red">
-			<i class="large material-icons">mode_edit</i>
+		<a class="btn-floating btn-large gray">
+			<i class="large material-icons">apps</i>
 		</a>
 		<ul>
 			<li>
-				<a class="btn-floating green tooltipped" data-tooltip="Open picture" data-position="left" data-delay="50" onclick="makeGray()"
-				 id="upload-btn">
-					<i class="material-icons">Make Gray</i>
+				<a class="btn-floating gray" onclick="uploadRefImage()" id="upload-btn">
+					<i class="material-icons" data-toggle="tooltip" data-placement="top" title="Imagem de referência">photo</i>
 				</a>
 			</li>
 			<li>
-				<a class="btn-floating yellow darken-1">
-					<i class="material-icons">format_quote</i>
+				<a class="btn-floating gray" onclick="uploadAdjImage()">
+					<i class="material-icons" data-toggle="tooltip" data-placement="top" title="Imagem de ajuste">photo</i>
 				</a>
 			</li>
 			<li>
-				<a class="btn-floating green">
-					<i class="material-icons">publish</i>
+				<a class="btn-floating gray" onclick="makeGray()" id="upload-btn">
+					<i class="material-icons" data-toggle="tooltip" data-placement="top" title="Transformar em escala de cinza">invert_colors</i>
 				</a>
 			</li>
 			<li>
-				<a class="btn-floating blue">
+				<a class="btn-floating gray">
 					<i class="material-icons">attach_file</i>
 				</a>
 			</li>
@@ -73,7 +72,6 @@
 			</div>
 		</div>
 	</div>
-	<input type="button" value="Make Grayscale" onclick="makeGray()">
 	<!--Scripts-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 

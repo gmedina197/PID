@@ -45,7 +45,11 @@ function makeSelectedMatrix(area) {
     console.log(area);
     console.log(grayScaleMatrix);
     let matrix; // = H x W
-    /* for(let i = 0; i < area.h; i++) */
+    for(let i = 0; i < area.h; i++) {
+        for(let j = 0; j < area.w; j++) {
+            
+        }
+    }
 
     console.log('Size: ' + refImage.getWidth() + 'x' + refImage.getHeight());
 }

@@ -53,3 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
         hoverEnabled: false,
     });
 });
+
+function uploadRefImage() {
+    document.getElementById("picField-1").click();
+}
+
+function uploadAdjImage() {
+    document.getElementById("picField-2").click();
+}
+
+//hide the obj to style the float button
+referenceImgDom.style.display = 'none';
+adjustImgDom.style.display = 'none';
+
+referenceImgDom.addEventListener('change', uploadRef);
+adjustImgDom.addEventListener('change', uploadAdj);
