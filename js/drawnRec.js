@@ -24,8 +24,6 @@ function getMousePos(canvas, evt) {
 
 function mouseDown(evt) {
     var pos = getMousePos(canvas, evt);
-    /* rect.startX = evt.pageX - canvas.offsetLeft;
-    rect.startY = evt.pageY- canvas.offsetTop; */
     rect.startX = pos.x;
     rect.startY = pos.y;
     drag = true;
