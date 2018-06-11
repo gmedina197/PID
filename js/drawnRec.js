@@ -14,9 +14,20 @@ function init() {
     canvas.addEventListener('mousemove', mouseMove, false);
 }
 
+function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+      x: evt.clientX - rect.left,
+      y: evt.clientY - rect.top
+    };
+}
+
 function mouseDown(evt) {
-    rect.startX = evt.pageX - this.offsetLeft;
-    rect.startY = evt.pageY - this.offsetTop;
+    var pos = getMousePos(canvas, evt);
+    /* rect.startX = evt.pageX - canvas.offsetLeft;
+    rect.startY = evt.pageY- canvas.offsetTop; */
+    rect.startX = pos.x;
+    rect.startY = pos.y;
     drag = true;
 }
 
@@ -27,8 +38,9 @@ function mouseUp() {
 
 function mouseMove(evt) {
     if (drag) {
-        rect.w = evt.pageX - this.offsetLeft - rect.startX;
-        rect.h = evt.pageY - this.offsetTop - rect.startY;
+        var pos = getMousePos(canvas, evt);
+        rect.w = pos.x - rect.startX;
+        rect.h = pos.y - rect.startY;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         refImage.drawTo(canvasRI);
         draw();
