@@ -56,8 +56,14 @@ function makeSelectedMatrix(area) {
     console.log(grayScaleMatrix);
     let matrix; // = H x W
     for (let i = 0; i < area.h; i++) {
-        for (let j = 0; j < area.w; j++) {}
+        for (let j = 0; j < area.w; j++) {
+            //get pixel from adj image
+            //put in the matrix
+        }
     }
 
-    console.log('Size: ' + refImage.getWidth() + 'x' + refImage.getHeight());
+    if (refImage.getWidth() && adjImage.getWidth()) {
+        console.log('reference image size: ' + refImage.getWidth() + 'x' + refImage.getHeight());
+        console.log('adjust image size: ' + adjImage.getWidth() + 'x' + adjImage.getHeight());
+    }
 }

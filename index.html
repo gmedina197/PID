@@ -16,18 +16,22 @@
 
 	<link rel="stylesheet" type="text/css " href="../css/index.css">
 
-	<link rel="stylesheet" type="text/css " href="../css/spinner.css">
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Droid+Sans" />
 
 	<title> P a t r e l a</title>
 </head>
 
 <body>
-	<nav>
-		<div class="nav-wrapper teal darken-4">
-			<a target="_blank" href="https://www.facebook.com/patrickestrela4" class="brand-logo center highlight">Trabalho de PID</a>
+	<div class="row">
+		<div class="col-md-12">
+			<nav>
+				<div class="nav-wrapper teal darken-4">
+					<a target="_blank" href="https://www.facebook.com/patrickestrela4" class="brand-logo center highlight">Trabalho de PID</a>
+				</div>
+			</nav>
 		</div>
-	</nav>
-	<p>&nbsp</p> <!--just spacing-->
+	</div>
+	<!--just spacing-->
 	<div class="fixed-action-btn">
 		<a class="btn-floating btn-large gray">
 			<i class="large material-icons">apps</i>
@@ -57,8 +61,9 @@
 	</div>
 
 	<div class="row">
-		<div class="col-md-6 vertical-line">
+		<div class="col-md-6">
 			<div name="Image-1">
+				<p align="center">Imagem de referência</p>
 				<div>
 					<input type="file" multiple="false" id="picField-1" onchange="uploadRef()" accept="image/*" />
 				</div>
@@ -69,6 +74,7 @@
 		</div>
 		<div class="col-md-6">
 			<div name="Image-2">
+				<p align="center">Imagem de ajuste</p>
 				<div>
 					<input type="file" multiple="false" id="picField-2" onchange="uploadAdj()" accept="image/*" />
 				</div>

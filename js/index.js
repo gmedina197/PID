@@ -27,9 +27,17 @@ function makeGray() {
         pixel.setGreen(avg);
         pixel.setBlue(avg);
     }
+
+    for (let pixel of adjImage.pixels()) {
+        let avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
+        pixel.setRed(avg);
+        pixel.setGreen(avg);
+        pixel.setBlue(avg);
+    }
     //let pixel = image.getPixel(0, 0);
     grayScaleMatrix = listToMatrix(grayScaleList, refImage.getHeight());
     refImage.drawTo(canvasRI);
+    adjImage.drawTo(canvasAI);
 }
 
 function listToMatrix(list, elementsPerSubArray) {

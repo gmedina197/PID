@@ -18,7 +18,7 @@
 }
 
 body {
-    background-color: rgb(95, 204, 180);
+    background-color: #313534;
 }
 
 .fixed-action-btn {
@@ -40,15 +40,15 @@ canvas {
     display: block;
 }
 
-@font-face {
-    font-family: Futura;
-    src: local('Futura Std');
-}
-
 a {
-    font-family: Futura;
+    font-family: "Droid Sans";
 }
 
-.highlight:hover{
-    color:rgb(18, 175, 31);
+p {
+    font-family: "Droid Sans";
+    color: aliceblue;
+}
+
+.highlight:hover {
+    color: rgb(19, 243, 67);
 }
