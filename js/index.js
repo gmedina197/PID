@@ -76,3 +76,13 @@ adjustImgDom.style.display = 'none';
 
 referenceImgDom.addEventListener('change', uploadRef);
 adjustImgDom.addEventListener('change', uploadAdj);
+
+function resetRefImage() {
+    let ctx = canvasRI.getContext('2d');
+    ctx.clearRect(0, 0, canvasRI.width, canvasRI.height);
+}
+
+function resetAdjImage() {
+    let ctx = canvasAI.getContext('2d');
+    ctx.clearRect(0, 0, canvasAI.width, canvasAI.height);   
+}

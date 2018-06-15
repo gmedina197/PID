@@ -22,64 +22,65 @@
 </head>
 
 <body>
-	<div class="row">
-		<div class="col-md-12">
-			<nav>
-				<div class="nav-wrapper teal darken-4">
-					<a target="_blank" href="https://www.facebook.com/patrickestrela4" class="brand-logo center highlight">Trabalho de PID</a>
-				</div>
-			</nav>
-		</div>
-	</div>
-	<!--just spacing-->
-	<div class="fixed-action-btn">
-		<a class="btn-floating btn-large gray">
-			<i class="large material-icons">apps</i>
-		</a>
-		<ul>
-			<li>
-				<a class="btn-floating gray" onclick="uploadRefImage()" id="upload-btn">
-					<i class="material-icons" data-toggle="tooltip" data-placement="top" title="Imagem de referência">photo</i>
-				</a>
-			</li>
-			<li>
-				<a class="btn-floating gray" onclick="uploadAdjImage()">
-					<i class="material-icons" data-toggle="tooltip" data-placement="top" title="Imagem de ajuste">photo</i>
-				</a>
-			</li>
-			<li>
-				<a class="btn-floating gray" onclick="makeGray()" id="upload-btn">
-					<i class="material-icons" data-toggle="tooltip" data-placement="top" title="Transformar em escala de cinza">invert_colors</i>
-				</a>
-			</li>
-			<li>
-				<a class="btn-floating gray">
-					<i class="material-icons">attach_file</i>
-				</a>
-			</li>
-		</ul>
-	</div>
-
-	<div class="row">
-		<div class="col-md-6">
-			<div name="Image-1">
-				<p align="center">Imagem de referência</p>
-				<div>
-					<input type="file" multiple="false" id="picField-1" onchange="uploadRef()" accept="image/*" />
-				</div>
-				<div>
-					<canvas id="canvas-1"></canvas>
-				</div>
+	<div class="bg">
+		<div class="row">
+			<div class="col-md-12">
+				<nav>
+					<div class="nav-wrapper blue darken-4">
+						<a target="_blank" href="https://www.facebook.com/patrickestrela4" class="brand-logo center highlight">Trabalho de PID</a>
+					</div>
+				</nav>
 			</div>
 		</div>
-		<div class="col-md-6">
-			<div name="Image-2">
-				<p align="center">Imagem de ajuste</p>
-				<div>
-					<input type="file" multiple="false" id="picField-2" onchange="uploadAdj()" accept="image/*" />
+		<div class="fixed-action-btn">
+			<a class="btn-floating btn-large gray">
+				<i class="large material-icons">apps</i>
+			</a>
+			<ul>
+				<li>
+					<a class="btn-floating gray">
+						<i class="material-icons">send</i>
+					</a>
+				</li>
+				<li>
+					<a class="btn-floating gray" onclick="makeGray()" id="upload-btn">
+						<i class="material-icons" data-toggle="tooltip" data-placement="top" title="Transformar em escala de cinza">invert_colors</i>
+					</a>
+				</li>
+				<li>
+					<a class="btn-floating gray" onclick="uploadAdjImage()">
+						<i class="material-icons" data-toggle="tooltip" data-placement="top" title="Imagem de ajuste">photo</i>
+					</a>
+				</li>
+				<li>
+					<a class="btn-floating gray" onclick="uploadRefImage()" id="upload-btn">
+						<i class="material-icons" data-toggle="tooltip" data-placement="top" title="Imagem de referência">photo</i>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div name="Image-1">
+					<p align="center">Imagem de referência</p>
+					<div>
+						<input type="file" multiple="false" id="picField-1" onchange="uploadRef()" accept="image/*" />
+					</div>
+					<div>
+						<canvas id="canvas-1"></canvas>
+					</div>
 				</div>
-				<div>
-					<canvas id="canvas-2"></canvas>
+			</div>
+			<div class="col-md-6">
+				<div name="Image-2">
+					<p align="center">Imagem de ajuste</p>
+					<div>
+						<input type="file" multiple="false" id="picField-2" onchange="uploadAdj()" accept="image/*" />
+					</div>
+					<div>
+						<canvas id="canvas-2"></canvas>
+					</div>
 				</div>
 			</div>
 		</div>
