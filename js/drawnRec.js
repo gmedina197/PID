@@ -9,6 +9,10 @@ let canvas = document.getElementById('canvas-1'),
     fullImage = false,
     drag = false;
 
+function changeFullImageBool() {
+    fullImage = true;
+}
+
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     return {
@@ -32,10 +36,7 @@ function mouseDown(evt) {
 
 function mouseUp() {
     drag = false;
-    if(fullImage)
-        makeFullImgMatrix();
-    else    
-        makSelectedMatrix(rect);
+    makeSelectedMatrix(rect);
 }
 
 function mouseMove(evt) {
@@ -59,6 +60,7 @@ function makeFullImgMatrix() {
 }
 
 function makeSelectedMatrix(area) {
+    //fullimg use 
     ctx.strokeStyle = 'green';
     ctx.strokeRect(rect.startX, rect.startY, rect.w, rect.h);
     

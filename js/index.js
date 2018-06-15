@@ -9,7 +9,6 @@ let refImage,
     adjImageMatrix = [];
 
 function makeGray() {
-    let grayScaleList = [];
     if (refImage) {
         refImageMatrix = grayScaleMatrix(refImage, canvasRI);
     }
