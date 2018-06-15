@@ -20,28 +20,34 @@ function uploadAdj() {
 
 function makeGray() {
     let grayScaleList = [];
-    for (let pixel of refImage.pixels()) {
-        let avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
-        grayScaleList.push(avg);
-        pixel.setRed(avg);
-        pixel.setGreen(avg);
-        pixel.setBlue(avg);
+    if (refImage) {
+        for (let pixel of refImage.pixels()) {
+            let avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
+            grayScaleList.push(avg);
+            pixel.setRed(avg);
+            pixel.setGreen(avg);
+            pixel.setBlue(avg);
+        }
+        grayScaleMatrix = listToMatrix(grayScaleList, refImage.getHeight());
+        refImage.drawTo(canvasRI);
     }
 
-    for (let pixel of adjImage.pixels()) {
-        let avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
-        pixel.setRed(avg);
-        pixel.setGreen(avg);
-        pixel.setBlue(avg);
+    if (adjImage) {
+        for (let pixel of adjImage.pixels()) {
+            let avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
+            pixel.setRed(avg);
+            pixel.setGreen(avg);
+            pixel.setBlue(avg);
+        }
+        //let pixel = image.getPixel(0, 0);
+        adjImage.drawTo(canvasAI);
     }
-    //let pixel = image.getPixel(0, 0);
-    grayScaleMatrix = listToMatrix(grayScaleList, refImage.getHeight());
-    refImage.drawTo(canvasRI);
-    adjImage.drawTo(canvasAI);
 }
 
 function listToMatrix(list, elementsPerSubArray) {
-    var matrix = [], i, k;
+    var matrix = [],
+        i,
+        k;
 
     for (i = 0, k = -1; i < list.length; i++) {
         if (i % elementsPerSubArray === 0) {
@@ -58,16 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
     var elems = document.querySelectorAll('.fixed-action-btn');
     var instances = M.FloatingActionButton.init(elems, {
         direction: 'right',
-        hoverEnabled: false,
+        hoverEnabled: false
     });
 });
 
 function uploadRefImage() {
-    document.getElementById("picField-1").click();
+    document.getElementById('picField-1').click();
 }
 
 function uploadAdjImage() {
-    document.getElementById("picField-2").click();
+    document.getElementById('picField-2').click();
 }
 
 //hide the obj to style the float button
@@ -84,5 +90,5 @@ function resetRefImage() {
 
 function resetAdjImage() {
     let ctx = canvasAI.getContext('2d');
-    ctx.clearRect(0, 0, canvasAI.width, canvasAI.height);   
+    ctx.clearRect(0, 0, canvasAI.width, canvasAI.height);
 }
