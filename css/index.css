@@ -23,16 +23,12 @@ body, html {
 }
 
 .bg {
-    /* The image used */
-    background-image: url("../images/degrade-bonito.jpg");
-
-    /* Full height */
     height: 100%; 
-
-    /* Center and scale the image nicely */
+    background-image: url("../images/degrade-bonito.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: hidden;
 }
 
 .fixed-action-btn {
@@ -48,6 +44,7 @@ body, html {
     top: 0;
 }
  */
+
 canvas {
     padding: 0;
     margin: auto;
