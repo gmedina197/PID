@@ -5,43 +5,34 @@ let referenceImgDom = document.getElementById('picField-1'),
 
 let refImage,
     adjImage,
-    grayScaleMatrix = [];
-
-function uploadRef() {
-    refImage = new SimpleImage(referenceImgDom);
-    refImage.drawTo(canvasRI);
-    init();
-}
-
-function uploadAdj() {
-    adjImage = new SimpleImage(adjustImgDom);
-    adjImage.drawTo(canvasAI);
-}
+    refImageMatrix = []
+    adjImageMatrix = [];
 
 function makeGray() {
     let grayScaleList = [];
     if (refImage) {
-        for (let pixel of refImage.pixels()) {
-            let avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
-            grayScaleList.push(avg);
-            pixel.setRed(avg);
-            pixel.setGreen(avg);
-            pixel.setBlue(avg);
-        }
-        grayScaleMatrix = listToMatrix(grayScaleList, refImage.getHeight());
-        refImage.drawTo(canvasRI);
+        refImageMatrix = grayScaleMatrix(refImage, canvasRI);
     }
 
     if (adjImage) {
-        for (let pixel of adjImage.pixels()) {
+        adjImageMatrix = grayScaleMatrix(adjImage, canvasAI);
+    }
+}
+
+function grayScaleMatrix(imgObj, canvas) {
+    if(imgObj) {
+        let list = [];
+        for (let pixel of imgObj.pixels()) {
             let avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
+            list.push(avg);
             pixel.setRed(avg);
             pixel.setGreen(avg);
             pixel.setBlue(avg);
         }
-        //let pixel = image.getPixel(0, 0);
-        adjImage.drawTo(canvasAI);
+        matrix = listToMatrix(list, refImage.getHeight());
+        imgObj.drawTo(canvas);
     }
+    return matrix;
 }
 
 function listToMatrix(list, elementsPerSubArray) {
@@ -68,6 +59,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+/*========================================================================================
+    FILE UPLOAD
+=========================================================================================*/
+function uploadRef() {
+    refImage = new SimpleImage(referenceImgDom);
+    refImage.drawTo(canvasRI);
+    init();
+}
+
+function uploadAdj() {
+    adjImage = new SimpleImage(adjustImgDom);
+    adjImage.drawTo(canvasAI);
+}
+
+
 function uploadRefImage() {
     document.getElementById('picField-1').click();
 }
@@ -83,12 +89,25 @@ adjustImgDom.style.display = 'none';
 referenceImgDom.addEventListener('change', uploadRef);
 adjustImgDom.addEventListener('change', uploadAdj);
 
+
+/*===========================================================================================
+    RESET CANVAS
+============================================================================================*/
 function resetRefImage() {
     let ctx = canvasRI.getContext('2d');
     ctx.clearRect(0, 0, canvasRI.width, canvasRI.height);
+    canvasRI.width = 300;
+    canvasRI.height = 150;
 }
 
 function resetAdjImage() {
     let ctx = canvasAI.getContext('2d');
     ctx.clearRect(0, 0, canvasAI.width, canvasAI.height);
+    canvasAI.width = 300;
+    canvasAI.height = 150;
+}
+
+function resetBothImg() {
+    resetAdjImage();
+    resetRefImage();
 }

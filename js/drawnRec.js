@@ -6,6 +6,7 @@ let canvas = document.getElementById('canvas-1'),
         w: 0,
         h: 0
     },
+    fullImage = false,
     drag = false;
 
 function getMousePos(canvas, evt) {
@@ -24,21 +25,24 @@ function init() {
 
 function mouseDown(evt) {
     var pos = getMousePos(canvas, evt);
-    rect.startX = pos.x;
-    rect.startY = pos.y;
+    rect.startX = Math.round(pos.x);
+    rect.startY = Math.round(pos.y);
     drag = true;
 }
 
 function mouseUp() {
     drag = false;
-    makeSelectedMatrix(rect);
+    if(fullImage)
+        makeFullImgMatrix();
+    else    
+        makSelectedMatrix(rect);
 }
 
 function mouseMove(evt) {
     if (drag) {
         var pos = getMousePos(canvas, evt);
-        rect.w = pos.x - rect.startX;
-        rect.h = pos.y - rect.startY;
+        rect.w = Math.round(pos.x - rect.startX);
+        rect.h = Math.round(pos.y - rect.startY);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         refImage.drawTo(canvasRI);
         draw();
@@ -51,19 +55,24 @@ function draw() {
     ctx.strokeRect(rect.startX, rect.startY, rect.w, rect.h);
 }
 
+function makeFullImgMatrix() {
+}
+
 function makeSelectedMatrix(area) {
+    ctx.strokeStyle = 'green';
+    ctx.strokeRect(rect.startX, rect.startY, rect.w, rect.h);
+    
     console.log(area);
-    console.log(grayScaleMatrix);
-    let matrix; // = H x W
-    for (let i = 0; i < area.h; i++) {
-        for (let j = 0; j < area.w; j++) {
-            //get pixel from adj image
-            //put in the matrix
+    console.log(grayScaleMatrix); 
+
+    let adjacencyList = new Array(area.h).fill(0); /*w * h */
+    let adjacencyMatrix = [];
+    
+    for (let i = 0, m = area.startX; i < area.w; i++, m++) {
+        adjacencyMatrix[i] = new Array(adjacencyList.length);
+        for (let j = 0, n = area.startY; j < area.h; j++, n++) {
+            adjacencyMatrix[i][j] = grayScaleMatrix[m][n];
         }
     }
-
-    if (refImage.getWidth() && adjImage.getWidth()) {
-        console.log('reference image size: ' + refImage.getWidth() + 'x' + refImage.getHeight());
-        console.log('adjust image size: ' + adjImage.getWidth() + 'x' + adjImage.getHeight());
-    }
+    console.log(adjacencyMatrix)
 }
