@@ -7,6 +7,10 @@ let canvas = document.getElementById('canvas-1'),
         h: 0
     },
     fullImage = false,
+    medias = {
+        ref: 0,
+        adj: 0
+    },
     drag = false;
 
 function changeFullImageBool() {
@@ -56,25 +60,42 @@ function draw() {
     ctx.strokeRect(rect.startX, rect.startY, rect.w, rect.h);
 }
 
-function makeFullImgMatrix() {
-}
+function makeFullImgMatrix() {}
 
 function makeSelectedMatrix(area) {
-    //fullimg use 
+    //fullimg use
     ctx.strokeStyle = 'green';
     ctx.strokeRect(rect.startX, rect.startY, rect.w, rect.h);
-    
-    console.log(area);
-    console.log(grayScaleMatrix); 
 
-    let adjacencyList = new Array(area.h).fill(0); /*w * h */
-    let adjacencyMatrix = [];
+    let adjacencyList = new Array(area.h).fill(0); // w * h
+    let selectedMatrix = [];
+    if (!fullImage) {
+        for (let i = 0, m = area.startX; i < area.w; i++, m++) {
+            selectedMatrix[i] = new Array(adjacencyList.length);
+            for (let j = 0, n = area.startY; j < area.h; j++, n++) {
+                selectedMatrix[i][j] = refImageMatrix[m][n];
+            }
+        }
+    } else {
+        makeFullImgMatrix();
+    }
+    medias.ref = getMedia(refImageMatrix)
+    medias.adj = getMedia(adjImageMatrix)
+    console.log(medias);
     
-    for (let i = 0, m = area.startX; i < area.w; i++, m++) {
-        adjacencyMatrix[i] = new Array(adjacencyList.length);
-        for (let j = 0, n = area.startY; j < area.h; j++, n++) {
-            adjacencyMatrix[i][j] = grayScaleMatrix[m][n];
+}
+
+//return the average on a list of pixels
+function getMedia(list) {
+    let element = 0;
+    for (let i = 0; i < list.length; i++) {
+        for (let j = 0; j < list[0].length; j++) {
+            element += list[i][j];
         }
     }
-    console.log(adjacencyMatrix)
+    console.log(element);
+    
+
+    return element / list.length;
 }
+

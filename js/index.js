@@ -5,7 +5,7 @@ let referenceImgDom = document.getElementById('picField-1'),
 
 let refImage,
     adjImage,
-    refImageMatrix = []
+    refImageMatrix = [],
     adjImageMatrix = [];
 
 function makeGray() {
@@ -19,26 +19,23 @@ function makeGray() {
 }
 
 function grayScaleMatrix(imgObj, canvas) {
-    if(imgObj) {
-        let list = [];
-        for (let pixel of imgObj.pixels()) {
-            let avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
-            list.push(avg);
-            pixel.setRed(avg);
-            pixel.setGreen(avg);
-            pixel.setBlue(avg);
-        }
-        matrix = listToMatrix(list, refImage.getHeight());
-        imgObj.drawTo(canvas);
+    let list = [],
+        matrix = [];
+    for (let pixel of imgObj.pixels()) {
+        let avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
+        list.push(avg);
+        pixel.setRed(avg);
+        pixel.setGreen(avg);
+        pixel.setBlue(avg);
     }
+    matrix = listToMatrix(list, imgObj.getHeight());
+    imgObj.drawTo(canvas);
+
     return matrix;
 }
 
 function listToMatrix(list, elementsPerSubArray) {
-    var matrix = [],
-        i,
-        k;
-
+    let matrix = [], i, k;
     for (i = 0, k = -1; i < list.length; i++) {
         if (i % elementsPerSubArray === 0) {
             k++;
@@ -72,7 +69,6 @@ function uploadAdj() {
     adjImage.drawTo(canvasAI);
 }
 
-
 function uploadRefImage() {
     document.getElementById('picField-1').click();
 }
@@ -87,7 +83,6 @@ adjustImgDom.style.display = 'none';
 
 referenceImgDom.addEventListener('change', uploadRef);
 adjustImgDom.addEventListener('change', uploadAdj);
-
 
 /*===========================================================================================
     RESET CANVAS
