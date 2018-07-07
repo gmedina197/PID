@@ -35,16 +35,6 @@ body, html {
     left: 10px; /*desired value*/
 }
 
-/* .vertical-line {
-    border-left: 6px solid #000;
-    position: absolute;
-    height: 600px;
-    left: 50%;
-    margin-left: -3px;
-    top: 0;
-}
- */
-
 canvas {
     padding: 0;
     margin: auto;
