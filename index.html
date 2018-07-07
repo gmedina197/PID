@@ -6,12 +6,6 @@
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<link rel="stylesheet" type="text/css " href="../css/index.css">
@@ -30,23 +24,23 @@
 						<a target="_blank" href="https://www.facebook.com/patrickestrela4" class="brand-logo highlight">&nbsp Trabalho de PID</a>
 						<ul class="right hide-on-med-and-down">
 							<li>
-								<a href="sass.html">
-									<i class="material-icons">search</i>
+								<a class="modal-trigger" href="#modal-info-img">
+									<i class="material-icons" data-toggle="tooltip" data-placement="bottom" title="Informação das duas imagens">report</i>
 								</a>
 							</li>
 							<li>
-								<a href="badges.html">
-									<i class="material-icons">view_module</i>
-								</a>
-							</li>
-							<li>
-								<a onclick="changeFullImageBool()">
+								<a onclick="makeFullImgMatrix()">
 									<i class="material-icons" data-toggle="tooltip" data-placement="bottom" title="Selecionar imagem inteira">launch</i>
 								</a>
 							</li>
 							<li>
 								<a onclick="resetBothImg()">
 									<i class="material-icons" data-toggle="tooltip" data-placement="bottom" title="Resetar as duas imagens">highlight_off</i>
+								</a>
+							</li>
+							<li>
+								<a class="modal-trigger" href="#modal-info">
+									<i class="material-icons" data-toggle="tooltip" data-placement="bottom" title="Alunos">info</i>
 								</a>
 							</li>
 						</ul>
@@ -61,7 +55,7 @@
 			<ul>
 				<li>
 					<a class="btn-floating green darker-3" onclick="run()">
-						<i class="material-icons"  data-toggle="tooltip" data-placement="top" title="Run">send</i>
+						<i class="material-icons" data-toggle="tooltip" data-placement="top" title="Run">send</i>
 					</a>
 				</li>
 				<li>
@@ -83,9 +77,9 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col s6 m6">
 				<div name="Image-1">
-					<p align="center">Imagem de referência</p>
+					<h1 align="center">Imagem de referência</h1>
 					<div>
 						<input type="file" multiple="false" id="picField-1" onchange="uploadRef()" accept="image/*" />
 					</div>
@@ -94,9 +88,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col s6 m6">
 				<div name="Image-2">
-					<p align="center">Imagem de ajuste</p>
+					<h1 align="center">Imagem de ajuste</h1>
 					<div>
 						<input type="file" multiple="false" id="picField-2" onchange="uploadAdj()" accept="image/*" />
 					</div>
@@ -107,6 +101,39 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Modal Structure -->
+	<div id="modal-info-img" class="modal bottom-sheet">
+		<div class="modal-content">
+			<h4>Modal Header</h4>
+			<p>A bunch of text</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+		</div>
+	</div>
+
+	<!-- Modal Structure -->
+	<div id="modal-info" class="modal">
+		<div class="modal-content">
+			<h4>What the duck?</h4>
+			<div class="row">
+				<p>Alunos:</p>
+				<ul class="collection">
+					<li class="collection-item">Gabriel Medina Marques</li>
+					<li class="collection-item">Guilherme Yago Ribas</li>
+					<li class="collection-item">Patrick Eric Estrela</li>
+				</ul>
+			</div>
+			<div class="row">
+				<p>UNIOESTE, 2018</p>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
+		</div>
+	</div>
+
 	<!--Scripts-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 

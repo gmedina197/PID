@@ -46,11 +46,15 @@ a {
     font-family: "Droid Sans";
 }
 
-p {
+h1 {
     font-size: 20px;
     font-weight: bold;
     font-family: "Droid Sans";
     color: rgb(255, 255, 255);
+}
+
+teste {
+    color: black;
 }
 
 .highlight:hover {

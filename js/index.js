@@ -1,7 +1,7 @@
-let referenceImgDom = document.getElementById('picField-1'),
-    canvasRI = document.getElementById('canvas-1'),
-    adjustImgDom = document.getElementById('picField-2'),
-    canvasAI = document.getElementById('canvas-2');
+let referenceImgDom = document.getElementById("picField-1"),
+    canvasRI = document.getElementById("canvas-1"),
+    adjustImgDom = document.getElementById("picField-2"),
+    canvasAI = document.getElementById("canvas-2");
 
 let refImage,
     adjImage,
@@ -35,7 +35,9 @@ function grayScaleMatrix(imgObj, canvas) {
 }
 
 function listToMatrix(list, elementsPerSubArray) {
-    let matrix = [], i, k;
+    let matrix = [],
+        i,
+        k;
     for (i = 0, k = -1; i < list.length; i++) {
         if (i % elementsPerSubArray === 0) {
             k++;
@@ -47,10 +49,10 @@ function listToMatrix(list, elementsPerSubArray) {
     return matrix;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    var elems = document.querySelectorAll('.fixed-action-btn');
+document.addEventListener("DOMContentLoaded", () => {
+    var elems = document.querySelectorAll(".fixed-action-btn");
     var instances = M.FloatingActionButton.init(elems, {
-        direction: 'right',
+        direction: "right",
         hoverEnabled: false
     });
 });
@@ -70,32 +72,32 @@ function uploadAdj() {
 }
 
 function uploadRefImage() {
-    document.getElementById('picField-1').click();
+    document.getElementById("picField-1").click();
 }
 
 function uploadAdjImage() {
-    document.getElementById('picField-2').click();
+    document.getElementById("picField-2").click();
 }
 
 //hide the obj to style the float button
-referenceImgDom.style.display = 'none';
-adjustImgDom.style.display = 'none';
+referenceImgDom.style.display = "none";
+adjustImgDom.style.display = "none";
 
-referenceImgDom.addEventListener('change', uploadRef);
-adjustImgDom.addEventListener('change', uploadAdj);
+referenceImgDom.addEventListener("change", uploadRef);
+adjustImgDom.addEventListener("change", uploadAdj);
 
 /*===========================================================================================
     RESET CANVAS
 ============================================================================================*/
 function resetRefImage() {
-    let ctx = canvasRI.getContext('2d');
+    let ctx = canvasRI.getContext("2d");
     ctx.clearRect(0, 0, canvasRI.width, canvasRI.height);
     canvasRI.width = 300;
     canvasRI.height = 150;
 }
 
 function resetAdjImage() {
-    let ctx = canvasAI.getContext('2d');
+    let ctx = canvasAI.getContext("2d");
     ctx.clearRect(0, 0, canvasAI.width, canvasAI.height);
     canvasAI.width = 300;
     canvasAI.height = 150;
@@ -105,3 +107,13 @@ function resetBothImg() {
     resetAdjImage();
     resetRefImage();
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    var elems = document.querySelectorAll(".modal");
+    var instances = M.Modal.init(elems, {});
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    var elems = document.getElementById("modal-info-img");
+    var instances = M.Modal.init(elems, {});
+});

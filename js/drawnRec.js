@@ -15,11 +15,8 @@ let canvas = document.getElementById("canvas-1"),
         ref: 0,
         adj: 0
     },
-    drag = false;
-
-function changeFullImageBool() {
-    fullImage = true;
-}
+    drag = false,
+    selectedMatrix = [];
 
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
@@ -64,7 +61,9 @@ function draw() {
     ctx.strokeRect(rect.startX, rect.startY, rect.w, rect.h);
 }
 
-function makeFullImgMatrix() {}
+function makeFullImgMatrix() {
+    selectedMatrix = refImageMatrix;
+}
 
 function makeSelectedMatrix(area) {
     //fullimg use
@@ -72,22 +71,12 @@ function makeSelectedMatrix(area) {
     ctx.strokeRect(rect.startX, rect.startY, rect.w, rect.h);
 
     let adjacencyList = new Array(area.h).fill(0); // w * h
-    let selectedMatrix = [];
-    if (!fullImage) {
-        for (let i = 0, m = area.startX; i < area.w; i++, m++) {
-            selectedMatrix[i] = new Array(adjacencyList.length);
-            for (let j = 0, n = area.startY; j < area.h; j++, n++) {
-                selectedMatrix[i][j] = refImageMatrix[m][n];
-            }
+    for (let i = 0, m = area.startX; i < area.w; i++, m++) {
+        selectedMatrix[i] = new Array(adjacencyList.length);
+        for (let j = 0, n = area.startY; j < area.h; j++, n++) {
+            selectedMatrix[i][j] = refImageMatrix[m][n];
         }
-    } else {
-        makeFullImgMatrix();
     }
-    medias.ref = getMedia(refImageMatrix);
-    medias.adj = getMedia(adjImageMatrix);
-
-    variances.ref = getVariation(refImageMatrix, medias.ref);
-    variances.adj = getVariation(adjImageMatrix, medias.adj);
 }
 
 //return the average on a list of pixels
@@ -118,15 +107,15 @@ function getGain(vr, va) {
 }
 
 function getOffSet(mr, ma, gain) {
-    return mr - (gain * ma);
+    return mr - gain * ma;
 }
 
 function adjImageAdjustment(gain, offset) {
-    let matrix = []
+    let matrix = [];
     for (let x = 0; x < adjImageMatrix.length; x++) {
         for (let y = 0; y < adjImageMatrix[0].length; y++) {
-            let pixel = adjImageMatrix[x][y]; 
-            matrix.push((gain * pixel) + offset);
+            let pixel = adjImageMatrix[x][y];
+            matrix.push(gain * pixel + offset);
         }
     }
     let i = 0;
@@ -140,15 +129,40 @@ function adjImageAdjustment(gain, offset) {
     adjImage.drawTo(canvasAI);
 }
 
+function findPatterns() {
+    let sum = 0;
+    let start = {
+        x: 0,
+        y: 0
+    };
+
+    if(selectedMatrix.length >= adjImageMatrix.length) {
+        alert('erro');
+        return;
+    }
+
+    for (let xa = 0; xa < adjImageMatrix.length; xa++) {
+        for (let ya = 0; ya < adjImageMatrix[0].length; ya++) {
+            for (let xr = 0; xr < selectedMatrix.length; xr++) {
+                for (let yr = 0; yr < selectedMatrix[0].length; yr++) {
+                    
+                }
+            }
+        }
+    }
+}
+
 function run() {
+    medias.ref = getMedia(refImageMatrix);
+    medias.adj = getMedia(adjImageMatrix);
+
+    variances.ref = getVariation(refImageMatrix, medias.ref);
+    variances.adj = getVariation(adjImageMatrix, medias.adj);
+
     let gain = getGain(variances.ref, variances.adj);
     let offset = getOffSet(medias.ref, medias.adj, gain);
-    console.log('media');
-    console.log(medias);
-    console.log('variancias');
-    console.log(variances);
-    console.log('ganho, offset');
-    console.log(gain, offset);
+
     adjImageAdjustment(gain, offset);
-    
+    findPatterns();
+    //fazer a busca
 }
