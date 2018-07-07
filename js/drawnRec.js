@@ -88,7 +88,6 @@ function makeSelectedMatrix(area) {
 
     variances.ref = getVariation(refImageMatrix, medias.ref);
     variances.adj = getVariation(adjImageMatrix, medias.adj);
-    console.log(variances);
 }
 
 //return the average on a list of pixels
@@ -114,6 +113,42 @@ function getVariation(list, media) {
     return element / (list.length * list[0].length);
 }
 
+function getGain(vr, va) {
+    return Math.sqrt(vr / va);
+}
+
+function getOffSet(mr, ma, gain) {
+    return mr - (gain * ma);
+}
+
+function adjImageAdjustment(gain, offset) {
+    let matrix = []
+    for (let x = 0; x < adjImageMatrix.length; x++) {
+        for (let y = 0; y < adjImageMatrix[0].length; y++) {
+            let pixel = adjImageMatrix[x][y]; 
+            matrix.push((gain * pixel) + offset);
+        }
+    }
+    let i = 0;
+    for (let pixel of adjImage.pixels()) {
+        let p = matrix[i];
+        pixel.setRed(p);
+        pixel.setGreen(p);
+        pixel.setBlue(p);
+        i++;
+    }
+    adjImage.drawTo(canvasAI);
+}
+
 function run() {
+    let gain = getGain(variances.ref, variances.adj);
+    let offset = getOffSet(medias.ref, medias.adj, gain);
+    console.log('media');
+    console.log(medias);
+    console.log('variancias');
+    console.log(variances);
+    console.log('ganho, offset');
+    console.log(gain, offset);
+    adjImageAdjustment(gain, offset);
     
 }
