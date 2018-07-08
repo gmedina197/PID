@@ -9,7 +9,7 @@ let canvas = document.getElementById("canvas-1"),
     fullImage = false,
     medias = {
         ref: 0,
-        adj: 0
+        adj: 0,
     },
     variances = {
         ref: 0,
@@ -126,30 +126,60 @@ function adjImageAdjustment(gain, offset) {
         pixel.setBlue(p);
         i++;
     }
+    adjImageMatrix = listToMatrix(matrix, adjImage.getWidth());
     adjImage.drawTo(canvasAI);
 }
 
 function findPatterns() {
-    let sum = 0;
+    let ctxAI = canvasAI.getContext('2d');
+    let sum = Number.MIN_SAFE_INTEGER;
     let start = {
         x: 0,
         y: 0
-    };
+    },
+    covariance = 0,
+    SelMedia = getMedia(selectedMatrix),
+    SelVariance = getVariation(selectedMatrix, SelMedia);
 
-    if(selectedMatrix.length >= adjImageMatrix.length) {
+
+    if(selectedMatrix.length > adjImageMatrix.length) {
         alert('erro');
-        return;
-    }
-
-    for (let xa = 0; xa < adjImageMatrix.length; xa++) {
-        for (let ya = 0; ya < adjImageMatrix[0].length; ya++) {
-            for (let xr = 0; xr < selectedMatrix.length; xr++) {
-                for (let yr = 0; yr < selectedMatrix[0].length; yr++) {
-                    
+    } else {
+        for (let xa = 0; xa < adjImageMatrix.length - selectedMatrix.length; xa++) {
+            for (let ya = 0; ya < adjImageMatrix[0].length - selectedMatrix[0].length; ya++) {
+                covariance = 0;
+                let AdjMatrix = new Array(selectedMatrix.length),
+                    AdjMedia = 0,
+                    AdjVariance;
+                for (let xr = 0; xr < selectedMatrix.length; xr++) {
+                    AdjMatrix[xr] = new Array(selectedMatrix[0].length);
+                    for (let yr = 0; yr < selectedMatrix[0].length; yr++) {
+                        AdjMatrix[xr][yr] = adjImageMatrix[xa + xr][ya + yr];
+                    }
+                }
+                AdjMedia = getMedia(AdjMatrix);
+                AdjVariance = getVariation(AdjMatrix, AdjMedia);
+                for (let xr = 0; xr < selectedMatrix.length; xr++) {
+                    for (let yr = 0; yr < selectedMatrix[0].length; yr++) {
+                        let g1 = AdjMatrix[xr][yr] - AdjMedia;
+                        let g2 = selectedMatrix[xr][yr] - SelMedia;
+                        covariance += (g1 * g2);
+                    }
+                }
+                covariance /= (selectedMatrix.length * selectedMatrix[0].length);
+                let correlation = covariance / Math.sqrt(AdjVariance * SelVariance);
+                if(correlation > sum){
+                    console.log(correlation);
+                    sum = correlation;
+                    start.x = xa;
+                    start.y = ya;
                 }
             }
         }
     }
+    
+    //???????????????????????????????????????????????????????????
+    ctxAI.strokeRect(start.y, start.x, selectedMatrix[0].length, selectedMatrix.length);    
 }
 
 function run() {
@@ -161,8 +191,7 @@ function run() {
 
     let gain = getGain(variances.ref, variances.adj);
     let offset = getOffSet(medias.ref, medias.adj, gain);
-
+    
     adjImageAdjustment(gain, offset);
     findPatterns();
-    //fazer a busca
 }

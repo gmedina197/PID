@@ -21,17 +21,38 @@ function makeGray() {
 function grayScaleMatrix(imgObj, canvas) {
     let list = [],
         matrix = [];
-    for (let pixel of imgObj.pixels()) {
+    for (let pixel of imgObj.toArray()) {
         let avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
         list.push(avg);
         pixel.setRed(avg);
         pixel.setGreen(avg);
         pixel.setBlue(avg);
     }
-    matrix = listToMatrix(list, imgObj.getHeight());
+
+    matrix = listToMatrix(list, imgObj.getWidth());
+    console.log(matrix);
+    
     imgObj.drawTo(canvas);
 
     return matrix;
+}
+
+function transpose(origArray) {
+    var newArray = [],
+        origArrayLength = origArray.length,
+        arrayLength = origArray[0].length,
+        i;
+    for (i = 0; i < arrayLength; i++) {
+        newArray.push([]);
+    }
+
+    for (i = 0; i < origArrayLength; i++) {
+        for (var j = 0; j < arrayLength; j++) {
+            newArray[j].push(origArray[i][j]);
+        }
+    }
+
+    return newArray;
 }
 
 function listToMatrix(list, elementsPerSubArray) {
