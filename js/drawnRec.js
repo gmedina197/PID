@@ -130,6 +130,12 @@ function adjImageAdjustment(gain, offset) {
     adjImage.drawTo(canvasAI);
 }
 
+function equals() {
+    if(refImage.getWidth() === adjImage.getWidth() && refImage.getHeight() === adjImage.getHeight()) 
+        return true;
+    return false;
+}
+
 function findPatterns() {
     let ctxAI = canvasAI.getContext('2d');
     let sum = Number.MIN_SAFE_INTEGER;
@@ -143,7 +149,7 @@ function findPatterns() {
 
 
     if(selectedMatrix.length > adjImageMatrix.length) {
-        alert('erro');
+        alert('ERRO: tamanho da imagem selecionada é maior que a imagem de referência');
     } else {
         for (let xa = 0; xa < adjImageMatrix.length - selectedMatrix.length; xa++) {
             for (let ya = 0; ya < adjImageMatrix[0].length - selectedMatrix[0].length; ya++) {
@@ -169,7 +175,6 @@ function findPatterns() {
                 covariance /= (selectedMatrix.length * selectedMatrix[0].length);
                 let correlation = covariance / Math.sqrt(AdjVariance * SelVariance);
                 if(correlation > sum){
-                    console.log(correlation);
                     sum = correlation;
                     start.x = xa;
                     start.y = ya;
@@ -177,9 +182,10 @@ function findPatterns() {
             }
         }
     }
-    
-    //???????????????????????????????????????????????????????????
-    ctxAI.strokeRect(start.y, start.x, selectedMatrix[0].length, selectedMatrix.length);    
+    if(equals())
+        ctxAI.strokeRect(start.x, start.y, selectedMatrix.length, selectedMatrix[0].length);    
+    else
+        ctxAI.strokeRect(start.y, start.x, selectedMatrix[0].length, selectedMatrix.length);    
 }
 
 function run() {

@@ -29,30 +29,10 @@ function grayScaleMatrix(imgObj, canvas) {
         pixel.setBlue(avg);
     }
 
-    matrix = listToMatrix(list, imgObj.getWidth());
-    console.log(matrix);
-    
+    matrix = listToMatrix(list, imgObj.getWidth());    
     imgObj.drawTo(canvas);
 
     return matrix;
-}
-
-function transpose(origArray) {
-    var newArray = [],
-        origArrayLength = origArray.length,
-        arrayLength = origArray[0].length,
-        i;
-    for (i = 0; i < arrayLength; i++) {
-        newArray.push([]);
-    }
-
-    for (i = 0; i < origArrayLength; i++) {
-        for (var j = 0; j < arrayLength; j++) {
-            newArray[j].push(origArray[i][j]);
-        }
-    }
-
-    return newArray;
 }
 
 function listToMatrix(list, elementsPerSubArray) {
@@ -131,10 +111,5 @@ function resetBothImg() {
 
 document.addEventListener("DOMContentLoaded", function() {
     var elems = document.querySelectorAll(".modal");
-    var instances = M.Modal.init(elems, {});
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    var elems = document.getElementById("modal-info-img");
     var instances = M.Modal.init(elems, {});
 });
